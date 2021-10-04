@@ -1,10 +1,8 @@
-
- 
 import java.io.*;
 import java.net.*;
  
 
-class TestUDPServer2 {
+class UDPServer1 {
  
 	public static void main(String[] args) throws IOException {
 		new TestUDPServer2().go();
@@ -34,7 +32,7 @@ class TestUDPServer2 {
 							new InputStreamReader(System.in));
 					str = br.readLine();
 					if ("bye".equals(str))
-					
+						break;
 					buf = str.getBytes();
  
 					DatagramPacket dp = new DatagramPacket(buf, buf.length,
@@ -42,7 +40,7 @@ class TestUDPServer2 {
 					ds.send(dp);
 					buf = null;
 				}
-				
+				ds.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -67,7 +65,7 @@ class TestUDPServer2 {
 					DatagramPacket dp = new DatagramPacket(buf, buf.length);
 					ds.receive(dp);
 					
-					message = new String(buf,0,dp.getlength());
+					message = new String(buf,0,dp.getLength());
 					 System.out.println("The information received on the client side is: "+message);
 				}
 			} catch (IOException e) {
