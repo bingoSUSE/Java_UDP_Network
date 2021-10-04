@@ -3,7 +3,7 @@
 import java.io.*;
 import java.net.*;
  
-class TestUDPClient2 {
+class UDPClient1 {
 	public static void main(String[] args) throws IOException {
 		new TestUDPClient2().go();
 	}
@@ -30,7 +30,7 @@ class TestUDPClient2 {
 							new InputStreamReader(System.in));
 					str = br.readLine();
 					if ("bye".equals(str))
-						
+						break;   //without break void null can be printed..this isuues and fixed
 					buf = str.getBytes();
  
 //					System.out.println("-----buf.length-------" + buf.length);
@@ -39,7 +39,7 @@ class TestUDPClient2 {
 					ds.send(dp);
 					buf = null;
 				}
-				
+				ds.close();  //close of connection is need as per udp protocol
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
